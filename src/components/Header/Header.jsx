@@ -59,7 +59,7 @@ console.log(authStatus,"authStatussssss")
   return (
     <header>
       <Container/>
-      <nav className='flex   py-8 p-2 '>
+      <nav className='flex top-0   py-8 p-2 bg-slate-200'>
         <div className='mr-4 '>
           <Link to='/'>
             <Logo width='80px'/>

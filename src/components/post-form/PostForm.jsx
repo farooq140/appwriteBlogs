@@ -76,8 +76,8 @@ function PostForm({post}) {
               }
      },[watch,slugTransform,setValue])
   return (
-    <form onSubmit={handleSubmit(submit)}  className="flex flex-wrap ">
-     <div className='w-2/3 p-2'>
+    <form onSubmit={handleSubmit(submit)}  className="flex  flex-row ">
+     <div className='w-2/3 p-2 flex-wrap'>
           <Input
                label="title"
                placeholder="Enter the title"
@@ -98,12 +98,13 @@ function PostForm({post}) {
              label="content"
              name="content"
              control={control}
+             className="m-15 z-30"
              defaultValue={getValues("content")}
           
           />
      </div>
 
-     <div className='w-1/3 py-2'>
+     <div className=' py-2 flex-wrap'>
           
            <Input
                     label="FeaturedImage "

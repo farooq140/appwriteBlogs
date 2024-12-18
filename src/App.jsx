@@ -3,7 +3,7 @@ import { useDispatch } from 'react-redux'
 import authServices from './appwrite/auth'
 import {login,logout} from "./store/authSlice"
 import { Outlet } from 'react-router-dom'
-import './App.css'
+// import './App.css'
 import { Footer, Header } from './components'
 
 function App() {
@@ -22,12 +22,12 @@ useEffect(() => {
 },[])
 
 return !loading?(
-  <div className='min-h-screen flex flex-wrap content-between bg-gray-400'>
-  <div className='w-full block'>
+  <div className='h- flex flex-col  m-0 p-0 bg-gray-300 h-lvh justify-between ' >
+  <div className='w-full  m-0 p-0 flex flex-col '>
     <Header />
     <main>
      <Outlet />
-    Todo
+    
     </main>
     <Footer />
   </div>

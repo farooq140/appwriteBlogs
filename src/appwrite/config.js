@@ -103,6 +103,29 @@ export class Service{
                throw e
           }
      }
+     async  fetchPaginatedData(page = 1, limit = 10) {
+          try {
+               const offset = (page - 1) * limit;
+               // Fetch data with pagination
+               const response = await this.databases.listDocuments(
+                 
+                 conf.appwriteDatabaseId,
+                 conf.appwriteCollectionId,
+                 
+                 [
+                   Query.limit(limit), // Limit the number of results
+                   Query.offset(offset), // Skip results for pagination
+                 ]
+               );
+           
+               console.log(`Page ${page}:`, response.documents);
+               console.log("Total Documents:", response.total);
+           
+               return response;
+             } catch (error) {
+               console.error("Error fetching paginated data:!!!!", error.message);
+             }
+           }
 
      async deleteFile(fileId){
                try{
@@ -123,6 +146,7 @@ export class Service{
               fileId
           )
       }
+      
 
 }
 
