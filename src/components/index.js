@@ -12,6 +12,7 @@ import Signup from "./Signup"
 import AuthLayout from "./AuthLayout"
 import RTE from "./RTE"
 import PostForm from "./post-form/PostForm"
+import Item from "./pagination/Item"
 
 export { 
      Footer, 
@@ -28,5 +29,6 @@ export {
      AuthLayout,
      RTE,
      PostForm,
+     Item
 
 }     

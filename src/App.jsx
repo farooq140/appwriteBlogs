@@ -23,7 +23,7 @@ useEffect(() => {
 
 return !loading?(
   <div className='h- flex flex-col  m-0 p-0 bg-gray-300 h-lvh justify-between ' >
-  <div className='w-full  m-0 p-0 flex flex-col '>
+  <div className='w-full  m-0 p-0 flex flex-col space-y-4 '>
     <Header />
     <main>
      <Outlet />
