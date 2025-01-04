@@ -41,7 +41,10 @@ function PostForm({post}) {
                if (file) {
                    const fileId = file.$id;
                    data.featuredImage = fileId;
-                   const dbPost = await appwriteService.createPost({ ...data, userId: userData?.userData?userData?.userData.$id:userData.$id });
+                   const dbPost = await appwriteService.createPost({ ...data,
+                     userId: userData?.userData?userData?.userData.$id:userData.$id });
+                     console.log(userData,"user data")
+                    // ten user 6760ff900033634704a1 675d743400334179ccc7 one
 
                    if (dbPost) {
                        navigate(`/post/${dbPost.$id}`);

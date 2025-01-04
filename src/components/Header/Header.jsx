@@ -24,7 +24,7 @@ console.log(authStatus,"authStatussssss")
   const navItem=[
     {
       name: user,
-      slug: "/login",
+      slug: "/profile",
       active: authStatus,
 
     },

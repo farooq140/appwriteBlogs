@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { Profiler } from 'react'
 import ReactDOM from 'react-dom/client'
 import './index.css'
 import App from './App.jsx'
@@ -12,6 +12,7 @@ import Home from './pages/Home.jsx'
 import Signup from './pages/Signup.jsx'
 import Post from './pages/Post.jsx'
 import   EditPost from './pages/EditPost.jsx'
+import Profilers from './pages/Profiles.jsx'
 const router=createBrowserRouter([
   {
     path:'/',
@@ -26,6 +27,14 @@ const router=createBrowserRouter([
         element:(
           <AuthLayout authentication={false}>
             <Login/>
+          </AuthLayout>
+        )
+      },
+      {
+        path:'/profile',
+        element:(
+          <AuthLayout authentication={true}>
+            <Profilers/>
           </AuthLayout>
         )
       },

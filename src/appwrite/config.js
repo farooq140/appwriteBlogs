@@ -103,25 +103,18 @@ export class Service{
                throw e
           }
      }
-     async  fetchPaginatedData(page = 1, limit = 10) {
+     async  getPostsUserId(queries=[Query.equal("userId","slug")]) {
           try {
-               const offset = (page - 1) * limit;
-               // Fetch data with pagination
-               const response = await this.databases.listDocuments(
-                 
-                 conf.appwriteDatabaseId,
-                 conf.appwriteCollectionId,
-                 
-                 [
-                   Query.limit(limit), // Limit the number of results
-                   Query.offset(offset), // Skip results for pagination
-                 ]
+               return this.databases.listDocuments(
+                    conf.appwriteDatabaseId,
+                    conf.appwriteCollectionId,
+                    queries
                );
            
-               console.log(`Page ${page}:`, response.documents);
-               console.log("Total Documents:", response.total);
+               // console.log(`Page ${page}:`, response.documents);
+               // console.log("Total Documents:", response.total);
            
-               return response;
+              
              } catch (error) {
                console.error("Error fetching paginated data:!!!!", error.message);
              }
