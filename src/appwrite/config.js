@@ -49,7 +49,6 @@ export class Service{
           catch(e){
                console.log("appwrite Error Service::updatePosts",e);
                throw e
-               return false
           }
      }
      async deletePost(slug){
@@ -79,7 +78,7 @@ export class Service{
      }
      async getPosts(queries=[Query.equal("status","active")]){
           try{
-               return this.databases.listDocuments(
+               return await this.databases.listDocuments(
                     conf.appwriteDatabaseId,
                     conf.appwriteCollectionId,
                     queries
@@ -105,7 +104,7 @@ export class Service{
      }
      async  getPostsUserId(queries=[Query.equal("userId","slug")]) {
           try {
-               return this.databases.listDocuments(
+               return await this.databases.listDocuments(
                     conf.appwriteDatabaseId,
                     conf.appwriteCollectionId,
                     queries
@@ -134,7 +133,7 @@ export class Service{
      }
      //check this later ok
      getFilePreview(fileId){
-          return this.bucket.getFilePreview(
+          return  this.bucket.getFilePreview(
               conf.appwriteBucketId,
               fileId
           )

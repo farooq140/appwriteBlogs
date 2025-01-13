@@ -4,13 +4,13 @@ import { Link } from 'react-router-dom'
 function PostCard({$id, title, content,featuredImage}) {
   console.log(service.getFilePreview(featuredImage),"featuredImage")
   const cleanContent=content.replace(/<[^>]*>/g, "")
-   const subStr= cleanContent.substr(0, 70)
+   const subStr= cleanContent.substr(0, 68)
    
   return (
-    <Link to={`/post/${$id}`} className="w-full  ">
-          <div className='w-72  rounded-xl p-4 h-80 bg-slate-100 '>
+    <Link to={`/post/${$id}`}>
+          <div className=' bg-gray-100 rounded-xl p-4 w-60 h-80  '>
               <div className='w-full justify-center '>
-                <img src={service.getFilePreview(featuredImage)} alt={title} className='rounded-xl h-40 text-center mb-2  mx-auto ' />
+                <img src={service.getFilePreview(featuredImage)} alt={title} className='rounded-xl w-44 h-48    ' />
 
                </div>
                <h2 className='text-xl text-gray-700 font-bold'>

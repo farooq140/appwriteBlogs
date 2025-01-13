@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import  { useEffect, useState } from "react";
 import { Link, useNavigate, useParams } from "react-router-dom";
 import service from "../appwrite/config";
 import { Button, Container } from "../components";
@@ -10,7 +10,9 @@ export default function Post() {
     const { slug } = useParams();
     const navigate = useNavigate();
 
-    const userData = useSelector(state => state.auth.userData.userData);
+    const userData = useSelector(state => state.auth.userData);
+    const userDatas=userData.userData.$id?userData.userData.$id:userData?.$id
+    const isAuthor = post && userData ? post?.userId === userDatas : false;
 
     
     useEffect(() => {
@@ -20,14 +22,14 @@ export default function Post() {
                 else navigate("/");
             });
         } else navigate("/");
-    }, [slug, navigate,userData]);
-    const isAuthor = post && userData ? post.userId === userData.$id : false;
-    console.log("PPPPPPPPPPPPPPPPPPPPPost",userData &&  post?console.log(true):console.log(false),"isssssssss",isAuthor)
+    }, [slug, navigate]);
+    console.log("PPPPPPPPPPPPPPPPPPPPPost",userData.userData.$id,"post", post ,post?.userId,isAuthor,"isAuthor")
     
     const deletePost = () => {
         service.deletePost(post.$id).then((status) => {
             if (status) {
                 service.deleteFile(post.featuredImage);
+                
                 navigate("/");
             }
         });
@@ -36,11 +38,11 @@ export default function Post() {
     return post ? (
         <div className="py-8">
             <Container>
-                <div className="w-96 flex justify-center  mb-4 relative border   rounded-xl p-2">
+                <div className="w-full flex justify-center mb-4 relative border rounded-xl p-2  ">
                     <img
                         src={service.getFilePreview(post.featuredImage)}
                         alt={post.title}
-                        className="rounded-xl  text-center "
+                        className="rounded-xl  text-center w-52 "
                     />
 
                     {isAuthor && (

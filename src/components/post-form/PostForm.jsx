@@ -1,4 +1,4 @@
-import React,{useCallback, useEffect} from 'react'
+import {useCallback, useEffect} from 'react'
 import {Input,Button,RTE,Select} from '../index'
 
 import appwriteService from "../../appwrite/config";
@@ -19,6 +19,7 @@ function PostForm({post}) {
      })
      const navigate=useNavigate()
      const userData=useSelector(state=>state.auth.userData)
+     console.log('postForm::line no 23data',userData)
      const submit=async(data)=>{
           if (post) {
                const file = data.image[0] ? await appwriteService.uploadFile(data.image[0]) : null;
@@ -54,7 +55,7 @@ function PostForm({post}) {
      }
     
      const slugTransform=useCallback((value)=>{
-          if(value && typeof value==="string"){
+          if(value && typeof value==="string")
                return value
                .trim()
                .toLowerCase() 
@@ -62,17 +63,12 @@ function PostForm({post}) {
                .replace(/\s/g, "-");
                
                return ""
-          }
+          
      },[])
      useEffect(()=>{
           const subscription=watch((value,{name})=>{
                if(name==="title"){
-                    let ch= setValue("slug",slugTransform(value.title),
-                              {shouldValidate:true}
-                           )
-                           
-                    
-                      }
+                     setValue("slug",slugTransform(value.title),{shouldValidate:true})}
           })
           return ()=>{
                subscription.unsubscribe()
@@ -82,14 +78,14 @@ function PostForm({post}) {
     <form onSubmit={handleSubmit(submit)}  className="flex  flex-row ">
      <div className='w-2/3 p-2 flex-wrap'>
           <Input
-               label="title"
-               placeholder="Enter the title"
+               label="Title"
+               placeholder="Enter the Title"
                className="mb-4"
                {...register("title",{required:true})}
           />
           <Input
                label="slug"
-               disabled={post?.$id}
+               // disabled={post?.$id}
                placeholder="slug"
                className="mb-4"
                {...register("slug",{required:true})}
