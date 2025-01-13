@@ -1,4 +1,4 @@
-import React,{useState} from 'react'
+import {useState} from 'react'
 import authService from '../appwrite/auth'
 import { Link,useNavigate } from 'react-router-dom'
 import { login } from '../store/authSlice'
@@ -6,6 +6,7 @@ import {Button,Input,Logo} from './index'
 import { useDispatch } from 'react-redux'
 import { useForm } from 'react-hook-form'
 function Signup() {
+    const navigate = useNavigate();
      const {register,handleSubmit}=useForm()
      const [error,setError]=useState(null)
       const dispatch=useDispatch()
@@ -21,7 +22,7 @@ function Signup() {
                } 
           }
       catch(error){
-          setError(error.message)
+          setError(error.status(400).message)
       }
      }
   return (
@@ -42,7 +43,7 @@ function Signup() {
                     Login
                     </Link>
                 </p>
-                {error && <p className="text-red-600 mt-8 text-center">{error}</p>}
+                {error && <p className="text-red-600 mt-8 text-center text-lg">{error} </p>}
                 <form onSubmit={handleSubmit(Signup)}>
                     <div className='space-y5'>
                          <Input
