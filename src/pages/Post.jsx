@@ -11,7 +11,7 @@ export default function Post() {
     const navigate = useNavigate();
 
     const userData = useSelector(state => state.auth.userData);
-    const userDatas=userData.userData.$id?userData.userData.$id:userData?.$id
+    const userDatas=userData?.userData?.$id?userData.userData.$id:userData?.$id
     const isAuthor = post && userData ? post?.userId === userDatas : false;
 
     
@@ -23,7 +23,7 @@ export default function Post() {
             });
         } else navigate("/");
     }, [slug, navigate]);
-    console.log("PPPPPPPPPPPPPPPPPPPPPost",userData.userData.$id,"post", post ,post?.userId,isAuthor,"isAuthor")
+    // console.log("PPPPPPPPPPPPPPPPPPPPPost",userData.userData.$id,"post", post ,post?.userId,isAuthor,"isAuthor")
     
     const deletePost = () => {
         service.deletePost(post.$id).then((status) => {

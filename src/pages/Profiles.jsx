@@ -4,7 +4,6 @@ import { useNavigate } from 'react-router-dom'
 import {login,logout} from "../store/authSlice"
 import  authService from '../appwrite/auth'
 import service from '../appwrite/config'
-import { use } from 'react'
 function Profiles() {
   const authStatus=useSelector(state=>state.auth.status)
 const navigate = useNavigate()
@@ -13,6 +12,7 @@ const [user,setUser] = useState(null)
 const [error,setError] = useState(null)
 let userData
 const auth= async function (data){
+  console.log("Profiles.jsx::line no 15",authStatus,data)
   setError("")
   try{
      
@@ -28,7 +28,7 @@ const auth= async function (data){
       //  userId auth one 6760ff900033634704a1 two 675d756100339300a0fc three 675d743400334179ccc7
   }
 } 
-let hello
+
 const getPostsUser=async function (data){
     try{
       const userPosts= await service.getPostsUserId(data)

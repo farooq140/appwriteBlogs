@@ -1,23 +1,27 @@
-import React,{useEffect,useState} from 'react'
+import{useEffect,useState} from 'react'
 import service from "../appwrite/config"
 import ReactPaginate from 'react-paginate'
-import { PostCard,Container, Item } from '../components'
+import { PostCard,Container } from '../components'
 function AllPosts() {
      const [posts, setPosts] = useState([])
-  
+     
+    
      useEffect(()=>{
           service.getPosts([])        
           .then((post)=>{
+
                if(post){     
                     setPosts(post.documents)
                  
                }
           })
      },[])
+     console.log("AllPost::line no 19",posts)
      //pagination
      const [pageNumber, setPageNumber] = useState(0)
      const ItemPerPage=6   
       const pagesVisited=pageNumber*ItemPerPage
+      console.log('AllPosts:: line no 52',)
       const displayItems=posts?.slice(pagesVisited,pagesVisited+ItemPerPage)
       .map((post)=>{
           return(

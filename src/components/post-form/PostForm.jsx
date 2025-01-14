@@ -28,7 +28,7 @@ function PostForm({post}) {
                    appwriteService.deleteFile(post.featuredImage);
                }
    
-               const dbPost = await appwriteService.updatePosts(post.$id, {
+               const dbPost = await appwriteService.updatePosts(post?.$id, {
                    ...data,
                    featuredImage: file ? file.$id : undefined,
                });
