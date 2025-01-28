@@ -10,7 +10,6 @@ function Signup() {
      const {register,handleSubmit,formState:{ errors }}=useForm()
      const [error,setError]=useState(null)
       const dispatch=useDispatch()
-      const removeError=setTimeout(()=>{ setError("")},5000)
       const Signup=async(data)=>{
           setError(" ")
           try{
@@ -25,8 +24,7 @@ function Signup() {
           }
       catch(error){
           console.log(error,"error!!!!!!")
-          setError(error.message="A user with the same id or email already exists in this app.")
-          removeError()
+          setError(error.message)
       }
      }
   return (
@@ -62,8 +60,7 @@ function Signup() {
                                     }  
                               })}
                          />
-                          {errors.name &&  <p className="text-red-600 mt-2 text-sm">{ errors.name.message}</p>}
-                              
+                          {errors.name && <p className="text-red-600 mt-2 text-sm">{errors.name.message}</p>}    
                          <Input
                               label="Email"
                               placeholder="Enter your email"
