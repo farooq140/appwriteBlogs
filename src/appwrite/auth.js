@@ -1,35 +1,21 @@
 import conf from '../Conf/conf';
-import { Client, Account, ID,Teams } from "appwrite";
+import { Client, Account, ID } from "appwrite";
 
 
 export class AuthService {
     client = new Client();
-    teams=new Teams();
     account;
-    user;
+    
 
     constructor() {
         this.client
             .setEndpoint(conf.appwriteUrl)
             .setProject(conf.appwriteProjectId);
         this.account = new Account(this.client);
-        this.teams = new Teams(this.client);
+      
             
     }
-    async UserAccount() {
-        try {
-            const userAccount = await this.user.list( []);
-            if (userAccount) {
-                // call another method
-                return await userAccount;
-            } else {
-               return  userAccount;
-            }
-        } catch (error) {
-            console.log("Appwrite serive :: createAccount :: error", error);
-            throw error;
-        }
-    }
+    
 
     async createAccount({email, password, name}) {
         try {
@@ -45,7 +31,13 @@ export class AuthService {
             throw error;
         }
     }
-    
+async userList() {
+    try {
+        return await this.account.listLogs();
+    } catch (error) {
+        console.log("Appwrite serive :: userList :: error", error);
+    }
+}
 
     async login({email, password}) {
         try {

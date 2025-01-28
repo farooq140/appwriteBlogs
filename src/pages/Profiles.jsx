@@ -1,6 +1,6 @@
 import React,{useState,useEffect} from 'react'
 import { useSelector } from 'react-redux'
-import { useNavigate } from 'react-router-dom'
+import { data, useNavigate } from 'react-router-dom'
 import {login,logout} from "../store/authSlice"
 import  authService from '../appwrite/auth'
 import service from '../appwrite/config'
@@ -9,36 +9,44 @@ function Profiles() {
 const navigate = useNavigate()
 const [loading,setLoading] = useState(true)
 const [user,setUser] = useState(null)
+const [currentUser,setCurrentUser] = useState(null)
+const[postTitle,setPostTitle]=useState(null)
 const [error,setError] = useState(null)
 let userData
-const auth= async function (data){
-  console.log("Profiles.jsx::line no 15",authStatus,data)
+const auth= async function (id){
+  console.log("Profiles.jsx::line no 15",authStatus)
   setError("")
   try{
      
-          userData =await authService.getCurrentUser(data) 
-          console.log(user,"user go yar")       
+          userData =await authService.getCurrentUser(id) 
            if(userData) 
             setUser( userData);
+          setCurrentUser(userData.$id)
       }
   catch(e){
     console.log(e,"error!!!!!!")
        setError(e.message)
 
-      //  userId auth one 6760ff900033634704a1 two 675d756100339300a0fc three 675d743400334179ccc7
+     
   }
-} 
+}
+console.log("profiles.js line no 33 user and userId",user,currentUser)       
 
-const getPostsUser=async function (data){
+let myUserPosts
+const getPostsUser=async function (){
     try{
-      const userPosts= await service.getPostsUserId(data)
-      console.log(userPosts?.documents,"userPosts",data,"dataaa")
+       myUserPosts= await service.getPosts()
+       const userPosts=myUserPosts.documents.map((posts)=>posts.userId===currentUser?posts.title:"")      
+      console.log("profiles:: line no 35",userPosts)
+      return userPosts
     }catch(e){
       console.log(e,"error!!!!!!")
     }
 }
+console.log("Profiles.jsx::line no 41",myUserPosts,getPostsUser(data).then((data)=>data))
 let userPost
 useEffect(()=>{
+  getPostsUser()
   if(authStatus){
     auth()
     

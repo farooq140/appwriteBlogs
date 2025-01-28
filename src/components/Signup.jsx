@@ -7,13 +7,15 @@ import { useDispatch } from 'react-redux'
 import { useForm } from 'react-hook-form'
 function Signup() {
     const navigate = useNavigate();
-     const {register,handleSubmit}=useForm()
+     const {register,handleSubmit,formState:{ errors }}=useForm()
      const [error,setError]=useState(null)
       const dispatch=useDispatch()
+      const removeError=setTimeout(()=>{ setError("")},5000)
       const Signup=async(data)=>{
           setError(" ")
           try{
                const createSignup= await authService.createAccount(data)
+               console.log(createSignup,"createSignup!!!")
                if(createSignup) {
                     const userData =await authService.getCurrentUser()
                     if(userData) dispatch(login(userData));
@@ -22,7 +24,9 @@ function Signup() {
                } 
           }
       catch(error){
-          setError(error.status(400).message)
+          console.log(error,"error!!!!!!")
+          setError(error.message="A user with the same id or email already exists in this app.")
+          removeError()
       }
      }
   return (
@@ -51,31 +55,45 @@ function Signup() {
                               placeholder="Enter your name"
                               type="text"
                               {...register('name',{
-                                   required:true
+                                   required:"Name is required",
+                                    minLength:{
+                                        value:3,
+                                        message:"Name must be at least 3 characters"
+                                    }  
                               })}
                          />
+                          {errors.name &&  <p className="text-red-600 mt-2 text-sm">{ errors.name.message}</p>}
+                              
                          <Input
                               label="Email"
                               placeholder="Enter your email"
                               type="email"
                               {...register('email',{
-                                   required:true,
+                                   required:"email is required",
                                    validate: {
                                    matchPatern: (value) => /^\w+([.-]?\w+)*@\w+([.-]?\w+)*(\.\w{2,3})+$/.test(value) ||
                                    "Email address must be a valid address",
+
                               }
                               })}   
                          />
+                         {errors.email && <p className="text-red-600 mt-2 text-sm">{errors.email.message}</p>}
                          <Input
                               label="Password: "
                               type="password" 
                                name="password"
                               placeholder="Enter your password"
                               {...register("password", {
-                              required: true,})}
+
+                              required: "password is required",
+                              minLength: {
+                                   value: 8,
+                                   message: "Password must have at least 8 characters"
+                              }
+                              })}
                          />
                           {/* <Input type="password" id="pass" name="password" minlength="8" required /> */}
-                            
+                          {errors.password && <p className="text-red-600 mt-2 text-sm">{errors.password.message}</p>}  
                          <Button
                               type='submit'
                               className='w-full mt-8'
