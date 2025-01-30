@@ -10,9 +10,9 @@ function LogoutBtn() {
           console.log('logoutBtn:: line no 9 logoutHandler',authService)          
 
                dispatch(logout())
-              setTimeout(()=>{
-                   window.location.reload()
-              })
+          //     setTimeout(()=>{
+          //          window.location.reload()
+          //     })
 
           })
      }

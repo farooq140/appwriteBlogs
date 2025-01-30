@@ -64,10 +64,10 @@ function Home() {
               </div>
 
               <div className='  flex  justify-center ' >
-                   <ReactPaginate className=' gap-3 bg-slate-800 text-white rounded-lg mt-28 py-3 flex justify-center
+                   <ReactPaginate className=' gap-4 bg-slate-800 text-white rounded-lg mt-28 py-3 flex justify-center
               align-center flex-direction-col w-40 '
-                        previousLabel={"<Pre"}
-                        nextLabel={"Next>"}
+                        previousLabel={"<"}
+                        nextLabel={">"}
                         pageCount={pageCount}
                         onPageChange={changePage}
                         containerClassName={"paginationBttns"}

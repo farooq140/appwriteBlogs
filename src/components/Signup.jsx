@@ -24,7 +24,8 @@ function Signup() {
           }
       catch(error){
           console.log(error,"error!!!!!!")
-          setError(error.message)
+          
+          setError(error.message="A user with the same  email, already exists in this app try different email")
       }
      }
   return (

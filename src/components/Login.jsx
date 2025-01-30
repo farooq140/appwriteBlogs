@@ -5,7 +5,7 @@ import {Button,Input,Logo} from './index'
 import {useDispatch} from 'react-redux'
 import authService from '../appwrite/auth' 
 import {useForm} from 'react-hook-form'     
-import service from '../appwrite/config'
+
 function Login() {
      const {register,handleSubmit,formState: { errors }} = useForm()
      const dispatch = useDispatch()
