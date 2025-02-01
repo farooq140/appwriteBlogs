@@ -1,32 +1,37 @@
 import  { useEffect, useState } from "react";
 import { Link, useNavigate, useParams } from "react-router-dom";
 import service from "../appwrite/config";
-import authService from "../appwrite/auth";
+
 import { Button, Container } from "../components";
 import parse from "html-react-parser";
 import { useSelector } from "react-redux";
 
-
 export default function Post() {
     const [post, setPost] = useState(null);
+ 
     const { slug } = useParams();
-    const navigate = useNavigate();
-
-    const userData = useSelector(state => state.auth.userData);
-    const userDatas=userData?.userData?.$id?userData.userData.$id:userData?.$id
-    const isAuthor = post && userData ? post?.userId === userDatas : false;
-
+    const navigate = useNavigate();  
     
+    const userData = useSelector((state) => state.auth.userData);    
+const isAuthor =post && userData ? post?.userId ===userData?.userId : false;;
+    
+
     useEffect(() => {
+           
         if (slug) {
             service.getPost(slug).then((post) => {
                 if (post) setPost(post);
                 else navigate("/");
+
             });
         } else navigate("/");
+    
     }, [slug, navigate]);
-    console.log("PPPPPPPPPPPPPPPPPPPPPost",userData.userData?.$id,"post", post ,post?.userId,isAuthor,"isAuthor")
-  const Author =async()=>  await authService.getCurrentUser().then((user)=>{return user.$id===post?.userId})   
+
+    
+    console.log("PPPPPPPPPPPPPPPPPPPPPost",isAuthor,userData,"post", post ,"isAuthor")
+
+        
     const deletePost = () => {
         service.deletePost(post.$id).then((status) => {
             if (status) {
@@ -36,7 +41,7 @@ export default function Post() {
             }
         });
     };
-    console.log("post", post, Author.id);
+
     return post ? (
         <div className="py-8">
             <Container>
@@ -48,7 +53,7 @@ export default function Post() {
                     />
 
                     {isAuthor && (
-                        <div className="absolute right-6 top-6">
+                        <div className=" right-3 top-5">
                             <Link to={`/edit-post/${post.$id}`}>
                                 <Button bgColor="bg-green-500" className="mr-3">
                                     Edit
@@ -63,9 +68,10 @@ export default function Post() {
                 <div className="p-6">
                     <h2 className="text-2xl font-bold text-gray-800 mb-2">{post.title}</h2>
                 </div>
+
                 <div className="browser-css">
                     {parse(post.content)}
-                    </div>
+                </div>
             </Container>
         </div>
     ) : null;

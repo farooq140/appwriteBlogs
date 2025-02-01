@@ -2,19 +2,20 @@
 import { useDispatch } from 'react-redux'
 import authService from '../../appwrite/auth'
 import {logout} from '../../store/authSlice'
+
+
 function LogoutBtn() {
      const dispatch = useDispatch()
-     const logoutHandler=()=>{
-          console.log('logoutBtn:: line no 8 logoutHandler',authService)          
-          authService.logout().then(()=>{
-          console.log('logoutBtn:: line no 9 logoutHandler',authService)          
-
+     
+     const  logoutHandler= async()=>{
+               await authService.logout().then(()=>{
                dispatch(logout())
-          //     setTimeout(()=>{
-          //          window.location.reload()
-          //     })
-
+                window.location.pathname="/login"   
+                 
+        
           })
+     
+
      }
 
 

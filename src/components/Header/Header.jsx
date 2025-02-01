@@ -53,12 +53,8 @@ function Header() {
       slug: "/add-post",
       active: authStatus,
   },
-  {
-      name: LogoutBtn,
-      slug: "/",
-      active: authStatus,
-
-  }
+  
+ 
   
   ]
   // const isActive=item=>item.slug===window.location.pathname

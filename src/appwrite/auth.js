@@ -57,13 +57,19 @@ async userList() {
 
         return null;
     }
+    async  getUserById(userId){
+        try {
+            return await this.account.listMfaFactors(userId);
+        } catch (error) {
+            console.log("Appwrite serive :: getUserById :: error", error);
+        }
+
+        return null;
+    }
 
     async logout() {
 
-        try {
-            
-            
-
+        try {        
           return  await this.account.deleteSessions();
         } catch (error) {
             console.log("Appwrite serive :: logout :: error", error);

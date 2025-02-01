@@ -27,8 +27,8 @@ function Login() {
           }
           catch(e){
 
-               setError(e.message=" Invalid email or password try again")
-               console.log("error!!!!",e)
+               setError(e.message)
+               console.log("error!!!!",e.status,e.message,e)
                setTimeout(()=>{setError("")},5000)
           }
      }
