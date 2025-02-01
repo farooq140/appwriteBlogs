@@ -85,6 +85,12 @@ function Login() {
                     className='w-full'
                     
                >Sign in</Button>
+               <p className='text-sm text-slate-500 '>for test use 
+                    <span className='text-slate-600'> Email: one@one.com</span>
+                    <span className='text-slate-600'> password: password123</span>
+
+
+               </p>
           </div>
      </form>          
     

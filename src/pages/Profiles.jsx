@@ -5,6 +5,7 @@ import service from '../appwrite/config';
 import  PostCard  from '../components/PostCard';
 import  Container  from '../components/container/Container';
 import ReactPaginate from 'react-paginate' 
+import { Link } from 'react-router-dom';
 function Profiles() {
   const authStatus = useSelector(state => state.auth.status);
   const [user, setUser] = useState(null);
@@ -12,7 +13,7 @@ function Profiles() {
   const [myUserPosts, setMyUserPosts] = useState(null);
   const [blog, setBlog] = useState(null);
   const [pageNumber, setPageNumber] = useState(0)
-    
+  
   const auth = async function () {
     try {
       const userData = await authService.getCurrentUser();
@@ -117,7 +118,15 @@ function Profiles() {
         </div> 
   
   :<div className="w-full py-8 mt-4 text-center">
-      <p>No posts found</p> 
+      <p>No posts found  
+        { <Link to="/add-post"
+                        className="font-medium mx-2 text-purple-500 transition-all duration-200   hover:underline"
+                    >
+                        Add New Post
+                    </Link>
+}
+        
+         </p> 
     </div>
 }
         

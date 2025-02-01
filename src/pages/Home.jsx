@@ -4,6 +4,7 @@ import { Container,PostCard} from '../components'
 // import authService from '../appwrite/auth'
 import ReactPaginate from 'react-paginate' 
 function Home() {
+   
     const [posts, setPosts] = useState([])
      
     
@@ -20,7 +21,7 @@ function Home() {
     console.log("AllPost::line no 19",posts)
     //pagination
     const [pageNumber, setPageNumber] = useState(0)
-    const ItemPerPage=3   
+    const ItemPerPage=4   
      const pagesVisited=pageNumber*ItemPerPage
      console.log('AllPosts:: line no 52',)
      const displayItems=posts?.slice(pagesVisited,pagesVisited+ItemPerPage)
@@ -44,7 +45,7 @@ function Home() {
                        <div className="flex flex-wrap">
                            <div className="p-2 w-full">
                                <h1 className="text-2xl font-bold hover:text-gray-500">
-                                   Login to read posts
+                                   <p>Login to read posts</p> 
                                    
                                </h1>
                            </div>
@@ -63,9 +64,9 @@ function Home() {
                       
               </div>
 
-              <div className='  flex  justify-center ' >
+              <div className='  flex  justify-center  ' >
                    <ReactPaginate className=' gap-4 bg-slate-800 text-white rounded-lg mt-28 py-3 flex justify-center
-              align-center flex-direction-col w-40 '
+              align-center flex-direction-col w-44 mx-auto'
                         previousLabel={"<"}
                         nextLabel={">"}
                         pageCount={pageCount}
