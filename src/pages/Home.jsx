@@ -6,12 +6,13 @@ import { PostCard,Container } from '../components'
 
 function Home() {
      const [posts, setPosts] = useState([])
-     
+     const [isloading,setIsloading]=useState(false)
     
      useEffect(()=>{
+          setIsloading(true)
           service.getPosts([])        
           .then((post)=>{
-
+               setIsloading(false)
                if(post){     
                     setPosts(post.documents)
                  
@@ -56,11 +57,13 @@ function Home() {
           }
   return (
     <div className='w-full py-8 '>
-          <Container >
+          {
+               isloading?(
+                    <span className="loading loading-spinner loading-xs"></span>
+               ):
+               <Container >
                <div className='flex flex-wrap gap-5 justify-center'>
-     
                    {displayItems}
-                       
                </div>
 
                <div className='  flex  justify-center   ' >
@@ -78,6 +81,9 @@ function Home() {
                          />
                     </div>
           </Container>
+                    
+          }
+          
     </div>
   )
 }

@@ -1,11 +1,12 @@
-import "../../../public/logo.png"
+import "../../img/logo.png"
 
 
 function Logo({width = '100px'}) {
   return (
     <div className='p-4 '  >
       
-      <img src="../../../public/logo.png" alt="Logo" width={width} className=" rounded-lg" />
+      {/* <img src="../../img/logo.png" alt="Logo" width={width} className=" rounded-lg" /> */}
+      <p>Logo</p>
     </div>
   )
 }
