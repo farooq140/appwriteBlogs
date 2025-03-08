@@ -9,14 +9,14 @@ function LogoutBtn() {
      const dispatch = useDispatch()
      const navigate = useNavigate()
      const  logoutHandler= async()=>{
-     try{
-          await authService.logout().then(()=>{
-               dispatch(logout());
-               navigate('/login');   
-          });        
-     }catch(e){
-          console.error("logout failed",e)
-     }
+               try{
+                    await authService.logout().then(()=>{
+                         dispatch(logout());
+                         navigate('/login');   
+                    })        
+               }catch(e){
+                    console.log(e)
+               }
      
 
      }
