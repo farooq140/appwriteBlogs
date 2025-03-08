@@ -10,7 +10,7 @@ function LogoutBtn() {
      const  logoutHandler= async()=>{
                await authService.logout().then(()=>{
                dispatch(logout())
-                window.location.pathname="/login"   
+               //  window.location.pathname="/login"   
                  
         
           })

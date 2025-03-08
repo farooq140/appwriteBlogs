@@ -27,7 +27,7 @@ function PostCard({$id, title, content,featuredImage}) {
                     {title}
                 </h2> 
                 <div className='card-action text-gray-500   p-2 flex   '>
-                  {subStr}<span className='text-blue-500'>...</span>
+                  {subStr}
 
                 </div>
               </div>      

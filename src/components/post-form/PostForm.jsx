@@ -1,4 +1,4 @@
-import {useCallback, useEffect} from 'react'
+import {useCallback, useEffect, useState} from 'react'
 import {Input,Button,RTE,Select} from '../index'
 
 import appwriteService from "../../appwrite/config";
@@ -7,6 +7,7 @@ import { useSelector } from 'react-redux'
 import { useForm } from 'react-hook-form'    
 
 function PostForm({post}) {
+     const [error,setError]=useState("")
      const {register,handleSubmit,watch,setValue,control,getValues,formState:{errors}}=useForm({
           defaultValues:{
                title:post?.title || "",
