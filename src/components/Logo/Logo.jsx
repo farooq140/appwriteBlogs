@@ -1,14 +1,14 @@
+import "../../../public/logo.png"
 
-import PropTypes from 'prop-types'
 
-function Logo({width='100px'}) {
+function Logo({width = '100px'}) {
   return (
-    <div className='p-4' style={{ width }}>Logo</div>
+    <div className='p-4 '  >
+      
+      <img src="../../../public/logo.png" alt="Logo" width={width} className=" rounded-lg" />
+    </div>
   )
 }
 
-Logo.propTypes = {
-  width: PropTypes.string
-}
 
 export default Logo

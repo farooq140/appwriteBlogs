@@ -72,7 +72,7 @@ function Header() {
           {navItem.map((item)=>item.active ?(
           <NavLink to={item.slug} key={item.name} className={(isActive )=>`block py-2 pr-4 pl-3 duration-200 
               ${item.slug===window.location.pathname && isActive?"text-purple-500 font-bold  ":"text-gray-500"}
-             border-b-2 border-red-600  hover:bg-gray-50 lg:hover:bg-transparent lg:border-0 hover:text-orange-700 lg:p-0`
+             border-b-2 border-red-600  hover:bg-gray-50 lg:hover:bg-transparent lg:border-0 hover:text-purple-500  lg:p-0`
  }>
             <li key={item.name}>
               <button onClick={()=>navigate(item.slug)} className='inline-bock px-6 py-2 duration-200 hover:bg-blue-100 rounded-full'>
