@@ -7,12 +7,13 @@ import { useSelector } from 'react-redux'
 import { useForm } from 'react-hook-form'    
 
 function PostForm({post}) {
-     const {register,handleSubmit,watch,setValue,control,getValues}=useForm({
+     const {register,handleSubmit,watch,setValue,control,getValues,formState:{errors}}=useForm({
           defaultValues:{
                title:post?.title || "",
                slug:post?.$id || "",
                content:post?.content || "",
                status:post?.status || "active",
+               errors:post?.errors || "",
                
           },
 
@@ -25,7 +26,7 @@ function PostForm({post}) {
                const file = data.image[0] ? await appwriteService.uploadFile(data.image[0]) : null;
    
                if (file) {
-                   appwriteService.deleteFile(post.featuredImage);
+                  await appwriteService.deleteFile(post.featuredImage);
                }
    
                const dbPost = await appwriteService.updatePosts(post?.$id, {
@@ -74,8 +75,14 @@ function PostForm({post}) {
                subscription.unsubscribe()
               }
      },[watch,slugTransform,setValue])
-  return (
+
+ console.log(errors,"errors!!!!") 
+return (
+ <div className='w-full p-4'> 
+     
     <form onSubmit={handleSubmit(submit)}  className="flex  flex-row ">
+   
+     
      <div className='w-2/3 p-2 flex-wrap'>
           <Input
                label="Title"
@@ -132,6 +139,7 @@ function PostForm({post}) {
           </Button>
      </div>
     </form>
+    </div>
   )
 }
 

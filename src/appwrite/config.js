@@ -132,11 +132,18 @@ export class Service{
                }
      }
      //check this later ok
-     getFilePreview(fileId){
+     getFilePreview(fileId,width=380,height=200,gravity="center",quality=100){
           return  this.bucket.getFilePreview(
               conf.appwriteBucketId,
-              fileId
-          )
+              fileId,
+               width,
+               height,
+               gravity,
+               quality,
+              
+              
+              
+          ).toString()
       }
       
 

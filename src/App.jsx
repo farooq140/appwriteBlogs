@@ -22,8 +22,8 @@ useEffect(() => {
 },[])
 
 return !loading?(
-  <div className='h- flex flex-col  m-0 p-0 bg-gray-300 h-lvh  ' >
-  <div className='w-full  m-0 p-0 flex flex-col space-y-4 h-screen justify-between '>
+  <div className='min-h-screen flex flex-wrap content-between bg-gray-400' >
+  <div className='w-full block '>
     <Header />
     <main>
      <Outlet />

@@ -1,4 +1,4 @@
-import React, { Profiler } from 'react'
+import React from 'react'
 import ReactDOM from 'react-dom/client'
 import './index.css'
 import App from './App.jsx'
@@ -7,7 +7,7 @@ import store from './store/store.js'
 import { RouterProvider, createBrowserRouter } from 'react-router-dom'
 import { AuthLayout,Login } from './components/index.js'
 import AddPost from './pages/AddPost.jsx'
-import AllPosts from './pages/AllPosts.jsx'
+// import AllPosts from './pages/AllPosts.jsx'
 import Home from './pages/Home.jsx'
 import Signup from './pages/Signup.jsx'
 import Post from './pages/Post.jsx'
@@ -47,16 +47,16 @@ const router=createBrowserRouter([
         )
 
       },
-      {
-        path:"/all-posts",
-        element:(
-          <AuthLayout authentication={true}>
-            {""}
-            <AllPosts/>
-          </AuthLayout>
-        )
+      // {
+      //   path:"/all-posts",
+      //   element:(
+      //     <AuthLayout authentication={true}>
+      //       {""}
+      //       <AllPosts/>
+      //     </AuthLayout>
+      //   )
         
-      },
+      // },
       {
         path:"/add-post",
         element:(

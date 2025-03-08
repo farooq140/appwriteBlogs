@@ -58,7 +58,8 @@ function Signup() {
                                     minLength:{
                                         value:3,
                                         message:"Name must be at least 3 characters"
-                                    }  
+                                    },
+                                    setValueAs: (value) => value.trim()  
                               })}
                          />
                           {errors.name && <p className="text-red-600 mt-2 text-sm">{errors.name.message}</p>}    
@@ -72,7 +73,8 @@ function Signup() {
                                    matchPatern: (value) => /^\w+([.-]?\w+)*@\w+([.-]?\w+)*(\.\w{2,3})+$/.test(value) ||
                                    "Email address must be a valid address",
 
-                              }
+                              },
+                              setValueAs: (value) => value.trim()
                               })}   
                          />
                          {errors.email && <p className="text-red-600 mt-2 text-sm">{errors.email.message}</p>}
@@ -87,7 +89,8 @@ function Signup() {
                               minLength: {
                                    value: 8,
                                    message: "Password must have at least 8 characters"
-                              }
+                              },
+                              setValueAs: (value) => value.trim()
                               })}
                          />
                           {/* <Input type="password" id="pass" name="password" minlength="8" required /> */}

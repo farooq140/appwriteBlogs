@@ -7,29 +7,29 @@ import authService from '../appwrite/auth'
 import {useForm} from 'react-hook-form'     
 
 function Login() {
-     const {register,handleSubmit,formState: { errors }} = useForm()
-     const dispatch = useDispatch()
      const navigate = useNavigate()
+     const dispatch = useDispatch()
+     
+     const {register,handleSubmit,formState: { errors }} = useForm()
+     
      const [error,setError] = useState("")
-     console.log("error",errors)
+     
      const login= async(data)=>{
           setError("")
           try{
                const session = await authService.login(data)
                if(session){
+                    console.log("session is going")
                     const userData =await authService.getCurrentUser() 
-                    if(userData) console.log("go hello"), dispatch(authLogin(userData));
-                    navigate("/")
-                    
-                    console.log("hello",userData) 
+                    if(userData) dispatch(authLogin(userData));
+                    navigate("/")  
                     
                }
           }
           catch(e){
 
                setError(e.message)
-               console.log("error!!!!",e.status,e.message,e)
-               setTimeout(()=>{setError("")},5000)
+               
           }
      }
       
@@ -63,7 +63,8 @@ function Login() {
                     validate: {
                          matchPatern: (value) => /^\w+([.-]?\w+)*@\w+([.-]?\w+)*(\.\w{2,3})+$/.test(value) ||
                          "Email address must be a valid address",
-                     }
+                    },
+                    setValueAs: (value) => value.trim()
                })}   
                />
                {errors.email && <p className="text-red-600">{errors.email.message}</p>}
@@ -76,10 +77,11 @@ function Login() {
                     minLength: {
                          value: 6,
                          message: "Password must have at least 6 characters"
-                    }
+                    },
+                    setValueAs: (value) => value.trim()
                })}
                />
-               { errors.password && <p className="text-red-600">{errors.password.message}</p>}
+               { error.password && <p className="text-red-600">{error.password.message}</p>}
                <Button 
                     type='submit'
                     className='w-full'
@@ -87,7 +89,7 @@ function Login() {
                >Sign in</Button>
                <p className='text-sm text-slate-500 '>for test use 
                     <span className='text-slate-600'> Email: one@one.com</span>
-                    <span className='text-slate-600'> password: password123</span>
+                    <span className='text-slate-600'> password: 12345678</span>
 
 
                </p>
